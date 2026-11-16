@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float _velocity;
-    
-    void Update()
+    [SerializeField] private float lifetime;
+    void Start()
     {
-        transform.position += Time.deltaTime * _velocity * Vector3.right;
+        Destroy(gameObject, lifetime);
     }
 
-    public void SetVelocity(float velocity)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        _velocity = velocity;
+        Destroy(gameObject);
     }
 }
